@@ -20,6 +20,9 @@ export const MenuItemAccess = (props) => {
         break;
       case "ArrowUp":
         focusManager.focusPrevious({ wrap: true });
+        break;
+      default:
+        return null;
     }
   };
 
