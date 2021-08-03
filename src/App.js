@@ -76,6 +76,12 @@ function DropdownMenu() {
     );
   }
 
+  const handleGoToMenu = (goToMenu) => {
+    if (goToMenu) {
+      setActiveMenu(goToMenu);
+    }
+  };
+
   return (
     <div className="dropdown" style={{ height: menuHeight }} ref={dropdownRef}>
       <CSSTransition
@@ -90,7 +96,7 @@ function DropdownMenu() {
             <MenuItemAccess>
               <DropdownItem>My Profile</DropdownItem>
             </MenuItemAccess>
-            <MenuItemAccess>
+            <MenuItemAccess goToMenu="settings" handleGoToMenu={handleGoToMenu}>
               <DropdownItem
                 leftIcon={<CogIcon />}
                 rightIcon={<ChevronIcon />}
@@ -99,14 +105,16 @@ function DropdownMenu() {
                 Settings
               </DropdownItem>
             </MenuItemAccess>
-
-            <DropdownItem
-              leftIcon="🦧"
-              rightIcon={<ChevronIcon />}
-              goToMenu="animals"
-            >
-              Animals
-            </DropdownItem>
+            <MenuItemAccess goToMenu="animals" handleGoToMenu={handleGoToMenu}>
+              {" "}
+              <DropdownItem
+                leftIcon="🦧"
+                rightIcon={<ChevronIcon />}
+                goToMenu="animals"
+              >
+                Animals
+              </DropdownItem>{" "}
+            </MenuItemAccess>
           </MenuAccess>
         </div>
       </CSSTransition>
@@ -119,13 +127,25 @@ function DropdownMenu() {
         onEnter={calcHeight}
       >
         <div className="menu">
-          <DropdownItem goToMenu="main" leftIcon={<ArrowIcon />}>
-            <h2>My Tutorial</h2>
-          </DropdownItem>
-          <DropdownItem leftIcon={<BoltIcon />}>HTML</DropdownItem>
-          <DropdownItem leftIcon={<BoltIcon />}>CSS</DropdownItem>
-          <DropdownItem leftIcon={<BoltIcon />}>JavaScript</DropdownItem>
-          <DropdownItem leftIcon={<BoltIcon />}>Awesome!</DropdownItem>
+          <MenuAccess>
+            <MenuItemAccess goToMenu="main" handleGoToMenu={handleGoToMenu}>
+              <DropdownItem goToMenu="main" leftIcon={<ArrowIcon />}>
+                <h2>My Tutorial</h2>
+              </DropdownItem>
+            </MenuItemAccess>
+            <MenuItemAccess>
+              <DropdownItem leftIcon={<BoltIcon />}>HTML</DropdownItem>
+            </MenuItemAccess>
+            <MenuItemAccess>
+              <DropdownItem leftIcon={<BoltIcon />}>CSS</DropdownItem>
+            </MenuItemAccess>
+            <MenuItemAccess>
+              <DropdownItem leftIcon={<BoltIcon />}>CSS</DropdownItem>
+            </MenuItemAccess>
+            <MenuItemAccess>
+              <DropdownItem leftIcon={<BoltIcon />}>JavaScript</DropdownItem>
+            </MenuItemAccess>
+          </MenuAccess>
         </div>
       </CSSTransition>
 
@@ -137,13 +157,25 @@ function DropdownMenu() {
         onEnter={calcHeight}
       >
         <div className="menu">
-          <DropdownItem goToMenu="main" leftIcon={<ArrowIcon />}>
-            <h2>Animals</h2>
-          </DropdownItem>
-          <DropdownItem leftIcon="🦘">Kangaroo</DropdownItem>
-          <DropdownItem leftIcon="🐸">Frog</DropdownItem>
-          <DropdownItem leftIcon="🦋">Horse?</DropdownItem>
-          <DropdownItem leftIcon="🦔">Hedgehog</DropdownItem>
+          <MenuAccess>
+            <MenuItemAccess goToMenu="main" handleGoToMenu={handleGoToMenu}>
+              <DropdownItem goToMenu="main" leftIcon={<ArrowIcon />}>
+                <h2>Animals</h2>
+              </DropdownItem>
+            </MenuItemAccess>
+            <MenuItemAccess>
+              <DropdownItem leftIcon="🦘">Kangaroo</DropdownItem>
+            </MenuItemAccess>
+            <MenuItemAccess>
+              <DropdownItem leftIcon="🐸">Frog</DropdownItem>
+            </MenuItemAccess>
+            <MenuItemAccess>
+              <DropdownItem leftIcon="🦋">Horse?</DropdownItem>
+            </MenuItemAccess>
+            <MenuItemAccess>
+              <DropdownItem leftIcon="🦔">Hedgehog</DropdownItem>
+            </MenuItemAccess>
+          </MenuAccess>
         </div>
       </CSSTransition>
     </div>

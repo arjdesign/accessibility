@@ -12,6 +12,7 @@ export const MenuAccess = (props) => {
 };
 
 export const MenuItemAccess = (props) => {
+  const { goToMenu, handleGoToMenu } = props;
   let focusManager = useFocusManager();
   let onKeyDown = (e) => {
     switch (e.key) {
@@ -20,6 +21,9 @@ export const MenuItemAccess = (props) => {
         break;
       case "ArrowUp":
         focusManager.focusPrevious({ wrap: true });
+        break;
+      case "ArrowLeft":
+        handleGoToMenu(goToMenu);
         break;
       default:
         return null;
