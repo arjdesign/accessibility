@@ -1,18 +1,21 @@
-import React from "react";
+import React, { useRef } from "react";
 import { FocusScope, useFocusManager } from "react-aria";
+import { useOverlay } from "react-aria";
 
 export const MenuAccess = (props) => {
+  const overlayRef = useRef();
+  const { overlayProps } = useOverlay(props, overlayRef);
   return (
-    <div role="toolbar">
-      <FocusScope contain autoFocus restoreFocus>
+    <FocusScope contain autoFocus restoreFocus>
+      <div ref={overlayRef} {...overlayProps}>
         {props.children}
-      </FocusScope>
-    </div>
+      </div>
+    </FocusScope>
   );
 };
 
 export const MenuItemAccess = (props) => {
-  const { goToMenu, handleGoToMenu } = props;
+  const { goToMenu, handleGoToMenu, link, handleClick } = props;
   let focusManager = useFocusManager();
   let onKeyDown = (e) => {
     switch (e.key) {
@@ -23,7 +26,11 @@ export const MenuItemAccess = (props) => {
         focusManager.focusPrevious({ wrap: true });
         break;
       case "ArrowLeft":
-        handleGoToMenu(goToMenu);
+        //hangle the crash error here
+        handleGoToMenu(goToMenu && goToMenu);
+        break;
+      case "Enter":
+        handleClick(link);
         break;
       default:
         return null;

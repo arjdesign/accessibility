@@ -52,6 +52,7 @@ function NavItem(props) {
 function DropdownMenu() {
   const [activeMenu, setActiveMenu] = useState("main");
   const [menuHeight, setMenuHeight] = useState(null);
+  const [link, setLink] = useState("");
   const dropdownRef = useRef(null);
 
   useEffect(() => {
@@ -77,9 +78,11 @@ function DropdownMenu() {
   }
 
   const handleGoToMenu = (goToMenu) => {
-    if (goToMenu) {
-      setActiveMenu(goToMenu);
-    }
+    goToMenu && setActiveMenu(goToMenu);
+  };
+
+  const handleClick = (link) => {
+    link && setLink(link);
   };
 
   return (
@@ -133,7 +136,7 @@ function DropdownMenu() {
                 <h2>My Tutorial</h2>
               </DropdownItem>
             </MenuItemAccess>
-            <MenuItemAccess>
+            <MenuItemAccess link="url" handleClick={handleClick}>
               <DropdownItem leftIcon={<BoltIcon />}>HTML</DropdownItem>
             </MenuItemAccess>
             <MenuItemAccess>
