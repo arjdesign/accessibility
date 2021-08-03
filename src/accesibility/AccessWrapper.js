@@ -1,10 +1,12 @@
 import React, { useRef } from "react";
 import { FocusScope, useFocusManager } from "react-aria";
-import { useOverlay } from "react-aria";
+import { Section, useTreeState } from "react-stately";
+import { useOverlay, useMenu } from "react-aria";
 
 export const MenuAccess = (props) => {
   const overlayRef = useRef();
   const { overlayProps } = useOverlay(props, overlayRef);
+
   return (
     <FocusScope contain autoFocus restoreFocus>
       <div ref={overlayRef} {...overlayProps}>
@@ -15,8 +17,12 @@ export const MenuAccess = (props) => {
 };
 
 export const MenuItemAccess = (props) => {
+  const menuRef = useRef();
+  const state = useTreeState({ ...props, selectionMode: "none" });
+  const menuProps = useMenu(props, state, menuRef);
   const { goToMenu, handleGoToMenu, link, handleClick } = props;
   let focusManager = useFocusManager();
+
   let onKeyDown = (e) => {
     switch (e.key) {
       case "ArrowDown":
@@ -37,5 +43,9 @@ export const MenuItemAccess = (props) => {
     }
   };
 
-  return <button onKeyDown={onKeyDown}>{props.children}</button>;
+  return (
+    <button {...menuProps} onKeyDown={onKeyDown}>
+      {props.children}
+    </button>
+  );
 };
