@@ -15,19 +15,22 @@ import { MenuAccess, MenuItemAccess } from "./accesibility/AccessWrapper";
 function App() {
   return (
     <Navbar>
-      {/* <MenuAccess> */}
-      <NavItem icon={<PlusIcon />} />
-      <NavItem icon={<BellIcon />} />
-      <NavItem icon={<MessengerIcon />} />
-      <NavItem icon={<CaretIcon />}>
-        <DropdownMenu></DropdownMenu>
-      </NavItem>
-      {/* </MenuAccess> */}
+      <MenuAccess>
+        <NavItem icon={<PlusIcon />} />
+        <NavItem icon={<BellIcon />} />
+        <NavItem icon={<MessengerIcon />}>
+          <DropdownMenu></DropdownMenu>{" "}
+        </NavItem>
+        <NavItem icon={<CaretIcon />}>
+          <DropdownMenu></DropdownMenu>
+        </NavItem>
+      </MenuAccess>
     </Navbar>
   );
 }
 
 function Navbar(props) {
+  const [isOpen, setIsOpen] = useState(false);
   return (
     <nav className="navbar">
       <ul className="navbar-nav">{props.children}</ul>

@@ -1,20 +1,18 @@
 import React, { useRef } from "react";
 import { FocusScope, useFocusManager } from "react-aria";
-import { useOverlay } from "react-aria";
+import { useHistory } from "react-router-dom";
 
 export const MenuAccess = (props) => {
-  const overlayRef = useRef();
-  const { overlayProps } = useOverlay(props, overlayRef);
+  //need to put this in
   return (
     <FocusScope contain autoFocus restoreFocus>
-      <div ref={overlayRef} {...overlayProps}>
-        {props.children}
-      </div>
+      <div>{props.children}</div>
     </FocusScope>
   );
 };
 
 export const MenuItemAccess = (props) => {
+  const history = useHistory();
   const { goToMenu, handleGoToMenu, link, handleClick } = props;
   let focusManager = useFocusManager();
   let onKeyDown = (e) => {
@@ -27,10 +25,11 @@ export const MenuItemAccess = (props) => {
         break;
       case "ArrowLeft":
         //hangle the crash error here
-        handleGoToMenu(goToMenu && goToMenu);
+        typeof handleGoToMenu === "function" &&
+          handleGoToMenu(goToMenu && goToMenu);
         break;
       case "Enter":
-        handleClick(link);
+        history.push(link);
         break;
       default:
         return null;
