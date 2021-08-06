@@ -1,6 +1,6 @@
 import React, { useRef } from "react";
 import { FocusScope, useFocusManager } from "react-aria";
-import { useHistory } from "react-router-dom";
+//import { useHistory } from "react-router-dom";
 
 export const MenuAccess = (props) => {
   //need to put this in
@@ -12,7 +12,7 @@ export const MenuAccess = (props) => {
 };
 
 export const MenuItemAccess = (props) => {
-  const history = useHistory();
+  //const history = useHistory();
   const { goToMenu, handleGoToMenu, link, handleClick } = props;
   let focusManager = useFocusManager();
   let onKeyDown = (e) => {
@@ -29,12 +29,13 @@ export const MenuItemAccess = (props) => {
           handleGoToMenu(goToMenu && goToMenu);
         break;
       case "Enter":
-        history.push(link);
+        //history.push(link);
+        console.log("Enter clicked");
         break;
       default:
         return null;
     }
   };
 
-  return <button onKeyDown={onKeyDown}>{props.children}</button>;
+  return <div onKeyDown={onKeyDown}>{props.children}</div>;
 };

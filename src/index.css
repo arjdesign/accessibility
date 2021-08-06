@@ -99,6 +99,8 @@ a {
   padding: 1rem;
   overflow: hidden;
   transition: height var(--speed) ease;
+  max-height: 400px;
+  overflow: auto;
 }
 
 .menu {

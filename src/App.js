@@ -151,6 +151,24 @@ function DropdownMenu() {
             <MenuItemAccess>
               <DropdownItem leftIcon={<BoltIcon />}>JavaScript</DropdownItem>
             </MenuItemAccess>
+            <MenuItemAccess>
+              <DropdownItem leftIcon={<BoltIcon />}>CSS</DropdownItem>
+            </MenuItemAccess>
+            <MenuItemAccess>
+              <DropdownItem leftIcon={<BoltIcon />}>CSS</DropdownItem>
+            </MenuItemAccess>
+            <MenuItemAccess>
+              <DropdownItem leftIcon={<BoltIcon />}>JavaScript</DropdownItem>
+            </MenuItemAccess>
+            <MenuItemAccess>
+              <DropdownItem leftIcon={<BoltIcon />}>CSS</DropdownItem>
+            </MenuItemAccess>
+            <MenuItemAccess>
+              <DropdownItem leftIcon={<BoltIcon />}>CSS</DropdownItem>
+            </MenuItemAccess>
+            <MenuItemAccess>
+              <DropdownItem leftIcon={<BoltIcon />}>JavaScript</DropdownItem>
+            </MenuItemAccess>
           </MenuAccess>
         </div>
       </CSSTransition>
